@@ -1,7 +1,7 @@
-import { BellRing, Check } from "lucide-react"
+
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+
 import {
     Card,
     CardContent,
@@ -10,7 +10,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { Switch } from "@/components/ui/switch"
+
 
 const scheduleData = [
     { day: 'Lunes', time: '20:00 - 23:00' },
