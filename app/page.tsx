@@ -1,101 +1,150 @@
-import Image from "next/image";
+"use client"
+import Image from "next/image"
+import Link from "next/link"
+import { MenuIcon } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import BG_Principal from "./assets/img/BG_IMG1.jpg"
+import ProfileIcon from "./assets/img/profileicon.jpg"
+import AboutSection from "@/components/about-section"
+import TwitchStream from "@/components/twitch-section"
+import StreamSchedule from "@/components/stream-schedule"
+import ProjectsSection from "@/components/projects-section"
+import ContactSection from "@/components/contact-section"
+import { useGlitch } from 'react-powerglitch'
 
-export default function Home() {
+
+
+export default function Page() {
+  const glitch = useGlitch({
+    "timing": {
+      "duration": 3550,
+      "easing": "ease-in"
+    },
+    "glitchTimeSpan": {
+      "start": 0.4
+    },
+    "shake": {
+      "amplitudeX": 0.15,
+      "amplitudeY": 0.1
+    },
+    "slice": {
+      "count": 6,
+      "velocity": 12,
+      
+    }
+  });
+  const glitch2 = useGlitch({
+    "timing": {
+      "duration": 4650,
+      "easing": "ease-in"
+    }
+  });
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen bg-black text-white">
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 p-6 flex justify-between items-center">
+        <Link href="/">
+          <Image
+            src={ProfileIcon}
+            alt="Logo"
+            width={40}
+            height={40}
+            ref={glitch2.ref}
+            className="rounded-full"
+          />
+        </Link>
+        <Button variant="ghost" size="icon" className="text-white">
+          <MenuIcon className="h-6 w-6" />
+          <span className="sr-only">Menu</span>
+        </Button>
+      </header>
+
+      {/* Hero Section */}
+      <main className="relative min-h-screen">
+        {/* MAIN CONTENT */}
+        <div className="absolute inset-0 ">
+          <Image
+            src={BG_Principal}
+            alt="Background"
+            width={1920}
+            height={1080}
+            className="bg-fixed w-full h-full opacity-50"
+            priority
+          />
+        </div>
+
+        <div className="relative z-10 flex flex-col items-start justify-center min-h-screen px-6 md:px-12 lg:px-24 ">
+          <div className="flex flex-row">
+          <h1 className=" text-[18vw] md:text-[8vw] font-bold leading-none tracking-tighter mb-6 glitch leading-none tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-purple-200 drop-shadow-2xl" ref={glitch.ref}>
+            ZNORUX
+          </h1>
+          <Link href="/" className="translate-y-1/4 translate-x-5">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={ProfileIcon}
+              alt="Logo"
+              width={70}
+              height={40}
+              ref={glitch2.ref}
+              className="rounded-full "
+              
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          </Link>
+          </div>
+
+          <div className="flex items-center gap-8 text-sm">
+            <button className="flex items-center gap-2 hover:opacity-70 transition-opacity font-bold">
+              <span className="h-12 w-12 rounded-full border flex items-center justify-center">
+                ▶
+              </span>
+              PLAY THE MUSIC
+            </button>
+            <div className="space-y-1 font-bold">
+              <p>COUNTER STRIKE 2</p>
+              <p>ESCAPE FROM TARKOV</p>
+            </div>
+            <div className="space-y-1 font-bold">
+              <p>MEXICO</p>
+              <p>Derek Graham</p>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <AboutSection />
+
+      <section className="px-6 md:px-12 lg:px-24 py-24 space-y-12 bg-gradient-to-bl from-zinc-800 to-black">
+        <span className="text-sm tracking-wider text-gray-400 font-semibold ">02</span>
+        <h1 className="text-[12vw] md:text-[4vw] font-bold leading-none tracking-tighter mb-6">
+          STREAM
+        </h1>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:space-y-32">
+          <div className="lg:col-span-2">
+
+            <TwitchStream />
+          </div>
+          <div className="">
+            <StreamSchedule />
+          </div>
+        </div>
+      </section>
+      <ProjectsSection />
+
+
+      <section className="px-6 md:px-12 lg:px-24 py-24 space-y-12 bg-gradient-to-bl from-zinc-800 to-black">
+        <span className="text-sm tracking-wider text-gray-400 font-semibold ">04</span>
+        <h1 className="text-[12vw] md:text-[4vw] font-bold leading-none tracking-tighter mb-6 bg-clip-text bg-gradient-to-r from-white to-purple-200">
+          CONTACTO
+        </h1>
+        <div className="md:space-y-32">
+          <div className="">
+
+            <ContactSection />
+          </div>
+
+        </div>
+      </section>
     </div>
-  );
+  )
 }
+
